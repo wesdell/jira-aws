@@ -5,5 +5,7 @@
 
 ########## Client ##########
 client/.next/
+client/.env.*
+!client/.env.example
 
 ########## Server ##########
