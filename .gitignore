@@ -9,3 +9,6 @@ client/.env.*
 !client/.env.example
 
 ########## Server ##########
+server/generated/prisma
+server/*.env
+!server/.env.example
