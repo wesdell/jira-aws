@@ -36,12 +36,16 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["prisma/**/*", "prisma.config.ts"]
+  "include": [
+    "src/**/*",
+    "src/data/**/*.json",
+    "prisma/**/*",
+    "prisma.config.ts"
+  ]
 }
