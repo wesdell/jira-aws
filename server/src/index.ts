@@ -5,6 +5,8 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import projectsRouter from './routes/ProjectRoutes.js';
+
 dotenv.config();
 
 const app = express();
@@ -17,9 +19,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get("/", (req, res) => {
+// Routes
+app.get("/", (_, res) => {
   res.send("Hello, World!");
 });
+
+app.use("/projects", projectsRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
