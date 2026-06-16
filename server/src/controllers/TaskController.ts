@@ -81,3 +81,32 @@ export const createTask = async (
       })
   }
 };
+
+export const updateTaskStatus = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { taskId } = req.params;
+    const { status } = req.body;
+
+    const updatedTask = await prisma.task.update({
+      where: {
+        id: Number(taskId)
+      },
+      data: {
+        status
+      }
+    });
+
+    res
+      .status(200)
+      .json(updatedTask)
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({
+        message: `Error updating tasks: ${error.message}`
+      })
+  }
+};
