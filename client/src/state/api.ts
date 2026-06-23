@@ -1,14 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { Project } from "@/types";
+import { Project, Task } from "@/types";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL
   }),
   reducerPath: "api",
-  tagTypes: ["Projects"],
+  tagTypes: ["Projects", "Tasks"],
   endpoints: (build) => ({
+    // Projects
     getProjects: build.query<Project[], void>({
       query: () => "projects",
       providesTags: ["Projects"]
@@ -20,11 +21,44 @@ export const api = createApi({
         body: project
       }),
       invalidatesTags: ["Projects"]
-    })
+    }),
+
+    // Tasks
+    getTasks: build.query<Task[], { projectId: number }>({
+      query: ({ projectId }) => `tasks?projectId=${projectId}`,
+      providesTags: (result) =>
+        result
+          ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
+          : [{ type: "Tasks" as const }]
+    }),
+    createTask: build.mutation<Task, Partial<Task>>({
+      query: (task) => ({
+        url: "tasks",
+        method: "POST",
+        body: task
+      }),
+      invalidatesTags: ["Tasks"]
+    }),
+    updateTaskStatus: build.mutation<Task, { taskId: number, status: string }>({
+      query: ({ taskId, status }) => ({
+        url: `tasks/${taskId}/status`,
+        method: "PATCH",
+        body: { status }
+      }),
+      invalidatesTags: (_, __, { taskId }) => [
+        { type: "Tasks", id: taskId }
+      ]
+    }),
   })
 });
 
 export const {
+  // Projects
   useGetProjectsQuery,
-  useCreateProjectMutation
+  useCreateProjectMutation,
+
+  //Tasks
+  useGetTasksQuery,
+  useCreateTaskMutation,
+  useUpdateTaskStatusMutation
 } = api;
