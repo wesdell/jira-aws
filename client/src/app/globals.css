@@ -30,7 +30,7 @@ body,
   @apply fill-white dark:fill-dark-secondary;
 }
 .timeline ._2dZTy:nth-child(even) {
-  @apply dark:fill-dark-tertiary fill-[#f5f5f5];
+  @apply fill-[#f5f5f5] dark:fill-dark-ternary;
 }
 .timeline ._35nLX {
   @apply fill-white stroke-[#e6e4e4] dark:fill-dark-secondary dark:stroke-stroke-dark;
@@ -42,7 +42,7 @@ body,
   @apply bg-white dark:bg-dark-secondary;
 }
 .timeline ._34SS0:nth-of-type(even) {
-  @apply dark:bg-dark-tertiary bg-[#f5f5f5];
+  @apply bg-[#f5f5f5] dark:bg-dark-ternary;
 }
 .timeline ._RuwuK,
 .timeline ._3rUKi,
