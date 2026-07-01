@@ -20,14 +20,14 @@ export interface Task {
   attachments?: Attachment[];
 };
 
-enum Status {
+export enum Status {
   ToDo = "To Do",
   WorkInProgress = "Work In Progress",
   UnderReview = "Under Review",
   Completed = "Completed"
 };
 
-enum Priority {
+export enum Priority {
   Urgent = "Urgent",
   High = "High",
   Medium = "Medium",
