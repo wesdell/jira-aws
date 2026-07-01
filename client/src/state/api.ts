@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { Project, Task } from "@/types";
+import { Project, Task, SearchResults } from "@/types";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -49,6 +49,11 @@ export const api = createApi({
         { type: "Tasks", id: taskId }
       ]
     }),
+
+    // Searchs
+    search: build.query<SearchResults, string>({
+      query: (query) => `search?query=${query}`
+    })
   })
 });
 
@@ -60,5 +65,8 @@ export const {
   //Tasks
   useGetTasksQuery,
   useCreateTaskMutation,
-  useUpdateTaskStatusMutation
+  useUpdateTaskStatusMutation,
+
+  // Searchs
+  useSearchQuery
 } = api;
