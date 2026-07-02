@@ -9,6 +9,7 @@ import projectsRouter from './routes/ProjectRoutes.js';
 import tasksRouter from './routes/TaskRoutes.js';
 import usersRouter from './routes/UserRoutes.js';
 import searchRouter from './routes/SearchRoutes.js';
+import teamRouter from './routes/TeamRoutes.js';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use("/projects", projectsRouter);
 app.use("/tasks", tasksRouter);
 app.use("/search", searchRouter);
 app.use("/users", usersRouter);
+app.use("/teams", teamRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
